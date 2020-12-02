@@ -7,6 +7,8 @@ package Login;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.io.*;
+import java.util.Scanner;
 
 /**
  *
@@ -211,10 +213,10 @@ public class signup extends javax.swing.JFrame {
             String password = new String(pw);
             int phone = Integer.parseInt(jtf_pno.getText());
             String address = (jtf_address.getText());
-            customer.i++;
             //=================================================
             try {
     RandomAccessFile raf= new RandomAccessFile("USERDATA.txt","rw");
+   // appendStrToFile(raf,email_id);
    raf.writeBytes(""+email_id);
    raf.writeBytes(";"+name);
    raf.writeBytes(";"+address);
