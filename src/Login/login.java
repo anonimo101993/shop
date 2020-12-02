@@ -5,6 +5,7 @@
  */
 package Login;
 
+import Products.products;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -146,13 +147,12 @@ public class login extends javax.swing.JFrame {
         // TODO add your handling code here:
 
 String pw = new String(login_pass.getPassword());
-        File inputFile = new File("USERDATA.txt");
      
      String userNameInput = login_id.getText();
      String passwordInput = pw;
      
      try {
-            Scanner in = new Scanner(new File("USERDATA.txt"));
+            Scanner in = new Scanner(new File("C:\\Users\\Rut Shah\\Shopify-master\\USERDATA.txt"));
             while (in.hasNextLine())
             {
               String s = in.nextLine();  
@@ -161,12 +161,14 @@ String pw = new String(login_pass.getPassword());
               System.out.println(sArray[0]); //Just to verify that file is being read
               System.out.println(sArray[4]);
  
-              
+              if (userNameInput.equals(sArray[0])){
               if (userNameInput.equals(sArray[0]) && passwordInput.equals(sArray[4]))
               {
                 JOptionPane.showMessageDialog(null,
                     "Login Successful", "Success",
                     JOptionPane.INFORMATION_MESSAGE);
+                    new products().setVisible(true);
+                    this.dispose();
               }
               else
               {
@@ -174,7 +176,8 @@ String pw = new String(login_pass.getPassword());
                     "Invalid Username / Password Combo", "Error",
                     JOptionPane.ERROR_MESSAGE);
               }
-            }
+              break;
+            }}
             
             in.close();
             
@@ -183,7 +186,7 @@ String pw = new String(login_pass.getPassword());
                     "User Database Not Found", "Error",
                     JOptionPane.ERROR_MESSAGE);
         }
-
+            
         
     }//GEN-LAST:event_signinActionPerformed
 
@@ -221,16 +224,7 @@ String pw = new String(login_pass.getPassword());
             java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
-        // ==========================================================
-        customer.email[customer.i] = "person1@email.com";
-        customer.name[customer.i] = "Person1";
-        customer.password[customer.i] = "pass1";
-        customer.phno[customer.i] = "1234567891";
-        customer.address[customer.i] = "c-203, blabla society,\nsome street, 380058";
-        customer.i++;
-        //==============================================================
-        /* Create and display the form */
+  
         java.awt.EventQueue.invokeLater(() -> {
             new login().setVisible(true);
         });

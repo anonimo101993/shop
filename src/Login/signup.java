@@ -214,16 +214,29 @@ public class signup extends javax.swing.JFrame {
             int phone = Integer.parseInt(jtf_pno.getText());
             String address = (jtf_address.getText());
             //=================================================
-            try {
-    RandomAccessFile raf= new RandomAccessFile("USERDATA.txt","rw");
-   // appendStrToFile(raf,email_id);
-   raf.writeBytes(""+email_id);
-   raf.writeBytes(";"+name);
-   raf.writeBytes(";"+address);
-   raf.writeBytes(";"+phone);
-   raf.writeBytes(";"+password);
+            try{
+    	String content = email_id+";"+name+";"+address+";"+phone+";"+password+"\n";
+        //Specify the file name and path here
+    	File file =new File("C:\\Users\\Rut Shah\\Shopify-master\\USERDATA.txt");
 
-}
+    	/* This logic is to create the file if the
+    	 * file is not already present
+    	 */
+    	if(!file.exists()){
+    	   file.createNewFile();
+    	}
+
+    	//Here true is to append the content to file
+    	FileWriter fw = new FileWriter(file,true);
+    	//BufferedWriter writer give better performance
+    	BufferedWriter bw = new BufferedWriter(fw);
+    	bw.write(content);
+    	//Closing BufferedWriter Stream
+    	bw.close();
+
+	System.out.println("Data successfully appended at the end of file");
+
+      }
 catch (IOException e) {
 System.out.println("An error occurred.");
 }       
